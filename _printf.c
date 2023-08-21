@@ -57,6 +57,6 @@ int _printf(const char *format, ...)
 		}
 
 		va_end(listofargs);
-
-		return (print_char);
+	}
+	 return (print_char);
 }
