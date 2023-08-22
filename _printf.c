@@ -1,45 +1,50 @@
 #include "main.h"
+int (*check_specifier(const char *format))(va_list);
+
 /**
- * _printf - is a function that selects the correct function to print.
- * @format: identifier to look for.
- * Return: the length of the string.
+ *  _printf - prints %c and %s format specifier
+ *  @format: format string
+ *  Return: number of printed charaters
  */
-int _printf(const char * const format, ...)
+
+int _printf(const char *format, ...)
 {
-	convert_match m[] = {
-		{"%s", printf_string}, {"%c", printf_char},
-		{"%%", printf_37},
-		{"%i", printf_int}, {"%d", printf_dec}, {"%r", printf_srev},
-		{"%R", printf_rot13}, {"%b", printf_bin}, {"%u", printf_unsigned},
-		{"%o", printf_oct}, {"%x", printf_hex}, {"%X", printf_HEX},
-		{"%S", printf_exclusive_string}, {"%p", printf_pointer}
-	};
+	unsigned int i = 0, count = 0;
+	va_list valist;
+	int (*f)(va_list);
 
-	va_list args;
-	int i = 0, j, len = 0;
-
-	va_start(args, format);
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+	if (format == NULL)
 		return (-1);
 
-Here:
-	while (format[i] != '\0')
+	va_start(valist, format);
+
+	while (format[i])
 	{
-		j = 13;
-		while (j >= 0)
+		for (; format[i] != '%' && format[i]; i++)
 		{
-			if (m[j].id[0] == format[i] && m[j].id[1] == format[i + 1])
-			{
-				len += m[j].f(args);
-				i = i + 2;
-				goto Here;
-			}
-			j--;
+			_putchar(format[i]);
+			count++;
 		}
+
+		if (!format[i])
+			return (count);
+
+		f = check_specifier(&format[i + 1]);
+		if (f != NULL)
+		{
+			count += f(valist);
+			i += 2;
+			continue;
+		}
+		if (!format[i + 1])
+			return (-1);
 		_putchar(format[i]);
-		len++;
-		i++;
+		count++;
+		if (format[i + 1] == '%')
+			i += 2;
+		else
+			i++;
 	}
-	va_end(args);
-	return (len);
+	va_end(valist);
+	return (count);
 }
