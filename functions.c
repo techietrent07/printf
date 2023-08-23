@@ -1,5 +1,5 @@
 #include "main.h"
-/************************* PRINT CHAR *************************/
+/*** PRINT CHAR ***/
 /**
 * print_char - Prints a char
 * @types: List a of arguments
@@ -16,7 +16,7 @@ int flags, int width, int precision, int size)
 char c = va_arg(types, int);
 return (handle_write_char(c, buffer, flags, width, precision, size));
 }
-/************************* PRINT A STRING *************************/
+/*** PRINT A STRING ***/
 /**
 * print_string - Prints a string
 * @types: List a of arguments
@@ -65,7 +65,7 @@ return (width);
 } }
 return (write(1, str, length));
 }
-/************************* PRINT PERCENT SIGN *************************/
+/*** PRINT PERCENT SIGN ***/
 /**
 * print_percent - Prints a percent sign
 * @types: Lista of arguments
