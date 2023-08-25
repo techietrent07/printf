@@ -1,11 +1,12 @@
 #include "main.h"
 
 /**
- * dc - collects int value and calls function to print.
- * @arg: argument value here int.
+ * dc - A function that collects int value and calls function to print.
+ * @arg: Argument value
  *
- * Return: n length of int.
+ * Return: Length of integer.
  */
+
 int dc(va_list arg)
 {
 	long int k = va_arg(arg, int);
@@ -18,12 +19,13 @@ int dc(va_list arg)
 
 
 /**
- * print_dig - prints signed integers.
- * @k: integer to be printed
- * @n: length of integer to be printed.
+ * print_dig - A function that prints signed integers.
+ * @k: The integer to be printed
+ * @n: Length of integer to be printed.
  *
- * Return: n length of int.
+ * Return: length of integer (n)
  */
+
 int print_dig(long int k, long int n)
 {
 	if (k < 0)
@@ -32,6 +34,7 @@ int print_dig(long int k, long int n)
 		k = -k;
 		n++;
 	}
+
 	if (k / 10)
 	{
 		n = print_dig(k / 10, n++);
@@ -44,10 +47,10 @@ int print_dig(long int k, long int n)
 
 
 /**
- * dcu - collects int value and calls function to print.
- * @arg: argument value here int.
+ * dcu - A function that collects int value and calls function to print.
+ * @arg: Argument value.
  *
- * Return: n length of int.
+ * Return: length of integer (n).
  */
 int dcu(va_list arg)
 {
@@ -61,11 +64,11 @@ int dcu(va_list arg)
 
 
 /**
- * print_dig_u - prints unsigned integers.
- * @k: integer to be printed
- * @n: length of integer
+ * print_dig_u - A function that prints unsigned integers.
+ * @k: The integer to be printed
+ * @n: The length of integer
  *
- * Return: n length of int.
+ * Return: length of integer (n).
  */
 int print_dig_u(long int k, long int n)
 {
