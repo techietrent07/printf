@@ -40,14 +40,14 @@ int ps(va_list arg)
 	int g = 0;
 	char *s = va_arg(arg, char *);
 
-	if (s != NULL)
+	if (!s)
 		s = "(null)";
 
-		while (s[g] != '\0')
-		{
-			_putchar(s[g]);
-			g++;
-		}
+	while (s[g] != '\0')
+	{
+		_putchar(s[g]);
+		g++;
+	}
 
-		return (a);
+	return (g);
 }
